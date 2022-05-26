@@ -7,13 +7,14 @@ import os
 from models import Enemy, Level, Game, Powerup
 
 DATABASE = 'flask-mongodb-graphene'
+USER = os.environ.get('MONGODB_USER')
 PASSWORD = os.environ.get('MONGODB_PASSWORD')
 
 client = connect(
     DATABASE,
 #    host = f'mongodb+srv://mongograph:{PASSWORD}@clusterjj-gazky.mongodb.net/?ssl=true&ssl_cert_reqs=CERT_NONE',
-#    host = f'mongodb+srv://admin:{PASSWORD}@localhost/',
-    host = f'mongodb://localhost/',
+    host = f'mongodb://{USER}:{PASSWORD}@localhost/',
+#    host = f'mongodb://localhost/',
     alias = 'default',
 )
 client.drop_database(DATABASE)
